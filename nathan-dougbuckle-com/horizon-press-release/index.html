@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Six months of Horizon. Here's what comes next. — Katapult</title>
+<meta name="description" content="Katapult's Horizon quarterly intelligence subscription is six months in. All six seats filled, twelve dispatches delivered, and a pipeline of follow-on work that's reshaped how we think about the next two years." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #171717;
+    --page: #FFFFFF;
+    --surface: #F7F7F7;
+    --surface-warm: #F2EFE9;
+    --hairline: #E8E8E8;
+    --secondary: #9C9C9C;
+    --tertiary: #828282;
+    --dark: #5E5E5E;
+    --accent: #0099FF;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'Fragment Mono', 'SF Mono', Menlo, monospace;
+    --pad-x: clamp(24px, 5vw, 88px);
+    --pad-y: clamp(40px, 6vw, 96px);
+    --topbar-h: 72px;
+    --measure: 720px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  html, body { background: var(--page); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  ::selection { background: var(--accent); color: #fff; }
+
+  /* =========================================================
+     TOPBAR
+     ========================================================= */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--topbar-h);
+    padding: 0 var(--pad-x);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 240ms ease;
+  }
+  .topbar.scrolled { border-bottom-color: var(--hairline); }
+
+  .lockup { display: flex; align-items: center; gap: 12px; line-height: 1; user-select: none; }
+  .lockup .mark { width: 22px; height: 22px; }
+  .lockup .wordmark {
+    font-family: var(--sans); font-weight: 900;
+    font-size: 17px; letter-spacing: -0.035em; color: var(--ink);
+  }
+  .lockup .cross { font-family: var(--sans); font-weight: 300; font-size: 16px; color: var(--tertiary); margin: 0 2px; }
+  .lockup .horizon {
+    font-family: var(--sans); font-weight: 500;
+    font-size: 17px; letter-spacing: -0.02em; color: var(--ink);
+    font-style: italic;
+  }
+
+  .topbar .nav { display: flex; align-items: center; gap: clamp(16px, 2.5vw, 32px); }
+  .topbar .nav a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+    padding: 6px 0;
+    transition: color 200ms ease;
+    position: relative;
+  }
+  .topbar .nav a:hover { color: var(--ink); }
+  .topbar .nav .cta {
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-weight: 500;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .topbar .nav .cta:hover { background: var(--ink); color: #fff; }
+
+  /* =========================================================
+     STRUCTURE
+     ========================================================= */
+  main { padding-top: var(--topbar-h); }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--pad-x);
+  }
+  .measure { max-width: var(--measure); }
+
+  section { padding: var(--pad-y) 0; }
+
+  /* =========================================================
+     HERO
+     ========================================================= */
+  .hero {
+    padding: clamp(48px, 8vw, 96px) 0 clamp(40px, 5vw, 64px);
+  }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 6px 12px;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+  }
+  .breadcrumb .date {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--tertiary);
+    text-transform: uppercase;
+  }
+
+  h1.headline {
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    margin-bottom: 28px;
+    max-width: 1080px;
+  }
+  h1.headline em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .deck {
+    font-size: clamp(18px, 1.6vw, 22px);
+    color: var(--dark);
+    max-width: var(--measure);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .return-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 36px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+    transition: color 200ms ease;
+  }
+  .return-link:hover { color: var(--ink); }
+  .return-link::before { content: "←"; font-family: var(--sans); }
+
+  /* =========================================================
+     HERO VISUAL — TEAM PHOTO
+     ========================================================= */
+  .hero-visual {
+    margin-top: clamp(40px, 5vw, 64px);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+    background: var(--surface);
+  }
+  .hero-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .hero-caption {
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-caption::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: var(--tertiary);
+  }
+
+  /* =========================================================
+     STATS STRIP
+     ========================================================= */
+  .stats-strip {
+    margin-top: clamp(48px, 6vw, 80px);
+    padding: clamp(32px, 4vw, 56px) 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .stats-strip .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(20px, 3vw, 48px);
+  }
+  .stats-strip .stat .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .stats-strip .stat .value {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stats-strip .stat .value .unit {
+    font-size: 0.45em;
+    font-weight: 500;
+    color: var(--tertiary);
+    margin-left: 4px;
+    letter-spacing: -0.02em;
+  }
+  @media (max-width: 720px) {
+    .stats-strip .stat-grid { grid-template-columns: repeat(2, 1fr); row-gap: 32px; }
+  }
+
+  /* =========================================================
+     PROSE
+     ========================================================= */
+  .prose {
+    max-width: var(--measure);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--dark);
+  }
+  .prose p { margin-bottom: 1.4em; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--ink); font-weight: 600; }
+  .prose a { color: var(--accent); border-bottom: 1px solid currentColor; }
+  .prose h2 {
+    font-family: var(--sans);
+    font-size: clamp(26px, 2.6vw, 34px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin: 2em 0 0.8em;
+    line-height: 1.15;
+  }
+  .prose h2 em { font-style: italic; font-weight: 500; color: var(--accent); }
+
+  /* =========================================================
+     SECTION HEAD
+     ========================================================= */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: clamp(28px, 3.2vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    max-width: 860px;
+  }
+  .section-title em { font-style: italic; font-weight: 500; color: var(--accent); }
+
+  /* =========================================================
+     ROSTER
+     ========================================================= */
+  .roster {
+    background: var(--surface);
+    padding: clamp(56px, 7vw, 112px) 0;
+    margin-top: var(--pad-y);
+  }
+  .roster-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 3vw, 48px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  @media (max-width: 880px) {
+    .roster-grid { grid-template-columns: 1fr; }
+  }
+
+  .roster-card {
+    background: var(--page);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: clamp(28px, 3vw, 40px);
+    transition: border-color 220ms ease, transform 220ms ease;
+  }
+  .roster-card:hover {
+    border-color: var(--ink);
+    transform: translateY(-2px);
+  }
+  .roster-card .seat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .roster-card .seat .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+  }
+  .roster-card .seat .sector {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .roster-card h3 {
+    font-size: clamp(22px, 2.2vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .roster-card .outcome {
+    font-size: 15px;
+    color: var(--dark);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .roster-card .signal {
+    display: flex;
+    gap: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--hairline);
+  }
+  .roster-card .signal .item .lbl {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .roster-card .signal .item .val {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* =========================================================
+     PULLQUOTE
+     ========================================================= */
+  .pullquote {
+    background: var(--ink);
+    color: #fff;
+    padding: clamp(72px, 9vw, 144px) 0;
+    margin: var(--pad-y) 0;
+  }
+  .pullquote blockquote {
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+    max-width: 980px;
+  }
+  .pullquote blockquote em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .pullquote .attribution {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .pullquote .attribution .name {
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+  }
+  .pullquote .attribution .role {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .pullquote .attribution .div {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  /* =========================================================
+     NEXT BLOCK
+     ========================================================= */
+  .next-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: clamp(20px, 2.5vw, 40px);
+    margin-top: clamp(40px, 5vw, 56px);
+  }
+  @media (max-width: 880px) {
+    .next-grid { grid-template-columns: 1fr; }
+  }
+  .next-card {
+    border-top: 1px solid var(--ink);
+    padding: 32px 0 0;
+  }
+  .next-card .step {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .next-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .next-card p {
+    font-size: 15px;
+    color: var(--dark);
+    line-height: 1.6;
+  }
+
+  /* =========================================================
+     SIGN-OFF
+     ========================================================= */
+  .signoff {
+    padding: clamp(56px, 7vw, 112px) 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .signoff .name {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .signoff .role {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+  }
+  .signoff .em-dash {
+    color: var(--tertiary);
+    margin-right: 12px;
+    font-weight: 300;
+  }
+
+  /* =========================================================
+     FOOTER
+     ========================================================= */
+  footer {
+    background: var(--surface);
+    padding: clamp(48px, 6vw, 80px) 0 32px;
+    border-top: 1px solid var(--hairline);
+  }
+  footer .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  footer .small {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+  }
+  footer .legal {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--hairline);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--secondary);
+  }
+
+  /* =========================================================
+     LIST PILLS
+     ========================================================= */
+  .pill-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .pill {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dark);
+    padding: 8px 14px;
+    background: var(--surface-warm);
+    border-radius: 999px;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a class="lockup" href="#">
+    <svg class="mark" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 11 L11 2 L20 11 L11 20 Z" fill="#171717"/>
+    </svg>
+    <span class="wordmark">Katapult</span>
+    <span class="cross">/</span>
+    <span class="horizon">Horizon</span>
+  </a>
+  <nav class="nav">
+    <a href="#story">Story</a>
+    <a href="#roster">Roster</a>
+    <a href="#next">What's next</a>
+    <a class="cta" href="#contact">Take a seat</a>
+  </nav>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <span class="tag">Update</span>
+        <span class="date">November 2026</span>
+      </div>
+      <h1 class="headline">Six months of Horizon. <em>Six clients in.</em> Here's what comes next.</h1>
+      <p class="deck">In May, Katapult took six seats off the shelf and called it a quarterly intelligence subscription. Twelve dispatches and two project handoffs later, Horizon is doing exactly what we hoped — and a few things we didn't see coming.</p>
+
+      <div class="hero-visual">
+        <img src="horizon-hero.png" alt="The Katapult team, Melbourne studio, November 2026" />
+      </div>
+      <div class="hero-caption">The Katapult team · Melbourne · November 2026</div>
+
+      <div class="stats-strip">
+        <div class="stat-grid">
+          <div class="stat">
+            <span class="label">Seats on the roster</span>
+            <span class="value">6<span class="unit">/6</span></span>
+          </div>
+          <div class="stat">
+            <span class="label">Dispatches delivered</span>
+            <span class="value">12</span>
+          </div>
+          <div class="stat">
+            <span class="label">Follow-on projects landed</span>
+            <span class="value">4</span>
+          </div>
+          <div class="stat">
+            <span class="label">Pipeline for FY27</span>
+            <span class="value">$1.8M<span class="unit">AUD</span></span>
+          </div>
+        </div>
+      </div>
+
+      <a href="/" class="return-link">Return to index</a>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story">
+    <div class="container">
+      <div class="prose">
+        <p>When we launched Horizon in May 2026, the premise was simple. Most of our clients don't need a six-figure foresight retainer — and most foresight retainers don't deliver the kind of pointed, opinionated, design-led intelligence that actually changes a roadmap. We thought there was a gap for something in between: senior-written dispatches, four times a year, six seats only, priced so a head of marketing or a head of strategy could approve it without going to a steering committee.</p>
+
+        <p>We weren't sure who would sign up. We had a hunch it would be category leaders trying to stay category leaders — the people most exposed to "we knew that was coming but didn't move fast enough." It turned out to be a slightly different profile: half the seats went to incumbents, half went to ambitious challengers who'd been quietly stockpiling capital and were now looking for places to deploy it. Both groups wanted the same thing — a signal layer they could trust, in a format their team would actually read.</p>
+
+        <h2>What two cycles taught us</h2>
+
+        <p>The first thing that surprised us is how much the dispatches got <strong>passed around</strong>. We'd built Horizon as a service to a single subscriber. By dispatch three, the average report was being forwarded to between four and seven people inside the client org — exec teams, board members, NPD leads, one CFO. The conversations that came out of those forwards became the second surprise: <strong>four of our six subscribers commissioned follow-on project work</strong> with Katapult inside the first two quarters. None of them were planning to. Each one read a dispatch and saw something they wanted to act on.</p>
+
+        <p>The third surprise was strategic. We thought Horizon was a revenue product. It turned out to also be a positioning product. Two of the most interesting pitches we won this year — both six-figure design engagements, both in categories Katapult hadn't worked in before — came from prospects who'd read a forwarded Horizon dispatch and asked who wrote it.</p>
+
+        <h2>Where we go to next</h2>
+
+        <p>We've made a small number of decisions for the next six months, and we're sharing them here so subscribers, prospects, and our own team are working from the same map.</p>
+      </div>
+
+      <div class="next-grid" id="next">
+        <div class="next-card">
+          <div class="step">01 — Hold the line on six</div>
+          <h3>The roster stays at six</h3>
+          <p>We were tempted to expand to nine after the first cycle. We're not. Six is what lets senior writers keep their hands on the work, and what lets us promise no two subscribers ever sit in the same category. Scarcity isn't a marketing posture here — it's the product.</p>
+        </div>
+        <div class="next-card">
+          <div class="step">02 — Launch Horizon: Studio</div>
+          <h3>A second tier, for design teams</h3>
+          <p>The dispatches kept getting forwarded into design and innovation teams who wanted to <em>build</em> from them. From Q1 2027 we'll offer a lighter Studio tier — quarterly dispatches plus two sketch sessions and a half-day workshop, capped at twelve clients. Same scarcity logic, different price point.</p>
+        </div>
+        <div class="next-card">
+          <div class="step">03 — Open Sydney + Auckland seats</div>
+          <h3>Two cities, two senior leads</h3>
+          <p>The first six seats were Melbourne-led. From the next cycle we're opening two seats run out of Sydney and a single seat run out of Auckland, each with a named lead. Same format, same standard. Wider net for inbound, and a way to test the model in a second market without diluting the first.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROSTER -->
+  <section class="roster" id="roster">
+    <div class="container">
+      <div class="eyebrow">Six clients · Six categories · Six different bets</div>
+      <h2 class="section-title">Real subscribers. <em>Real outcomes.</em></h2>
+      <p class="prose" style="max-width:760px;">We agreed not to name names in this update — Horizon's value compounds when subscribers know their dispatches aren't being skimmed by their competitors. What we can share is the shape of the work, and what came out of it.</p>
+
+      <div class="roster-grid">
+
+        <div class="roster-card">
+          <div class="seat"><span class="num">Seat 01</span><span class="sector">Premium beverage</span></div>
+          <h3>Where the next $40M of category growth was hiding</h3>
+          <p class="outcome">Two dispatches identified a non-alcoholic occasion the subscriber had been treating as a defensive play. Horizon reframed it as the offensive bet of the decade. Their NPD team has since restructured a six-month roadmap around it.</p>
+          <div class="signal">
+            <div class="item"><span class="lbl">Followed-on project</span><span class="val">Yes — Q3 brief</span></div>
+            <div class="item"><span class="lbl">Forwarded inside org</span><span class="val">9 people</span></div>
+          </div>
+        </div>
+
+        <div class="roster-card">
+          <div class="seat"><span class="num">Seat 02</span><span class="sector">Health & wellness retail</span></div>
+          <h3>A market entry the board was about to greenlight — and shouldn't have</h3>
+          <p class="outcome">Dispatch four laid out three structural reasons a planned Asia-Pacific expansion was likely to underperform projections by 30–40%. The board paused, redirected to a smaller pilot, and asked Katapult to run a follow-up engagement on a more defensible adjacency.</p>
+          <div class="signal">
+            <div class="item"><span class="lbl">Followed-on project</span><span class="val">Yes — Q4 brief</span></div>
+            <div class="item"><span class="lbl">Forwarded inside org</span><span class="val">CEO + board</span></div>
+          </div>
+        </div>
+
+        <div class="roster-card">
+          <div class="seat"><span class="num">Seat 03</span><span class="sector">Financial services</span></div>
+          <h3>The customer segment everyone was chasing — and the one nobody had named</h3>
+          <p class="outcome">Two dispatches mapped a fast-growing customer segment that didn't yet have a label. The subscriber built an internal acquisition program around it before competitors had a name for the audience.</p>
+          <div class="signal">
+            <div class="item"><span class="lbl">Followed-on project</span><span class="val">In discussion</span></div>
+            <div class="item"><span class="lbl">Forwarded inside org</span><span class="val">5 people</span></div>
+          </div>
+        </div>
+
+        <div class="roster-card">
+          <div class="seat"><span class="num">Seat 04</span><span class="sector">Agricultural B2B</span></div>
+          <h3>A regulatory shift, two years out, that nobody was pricing in</h3>
+          <p class="outcome">Dispatch two flagged a regulatory tailwind that hadn't yet shown up in trade press. The subscriber moved early on three supplier relationships and a positioning shift. They've since told us the value of that single dispatch covered the four-year cost of the seat.</p>
+          <div class="signal">
+            <div class="item"><span class="lbl">Followed-on project</span><span class="val">Yes — Q2 sketch sprint</span></div>
+            <div class="item"><span class="lbl">Forwarded inside org</span><span class="val">CEO + GM commercial</span></div>
+          </div>
+        </div>
+
+        <div class="roster-card">
+          <div class="seat"><span class="num">Seat 05</span><span class="sector">DTC consumer goods</span></div>
+          <h3>Why the brand they were copying was the wrong brand to copy</h3>
+          <p class="outcome">A founder-led challenger had been benchmarking against a category leader. Horizon argued — with data — that the leader's playbook had a two-year shelf life. The subscriber redirected positioning and product roadmap toward an emerging behaviour pattern the leader was missing.</p>
+          <div class="signal">
+            <div class="item"><span class="lbl">Followed-on project</span><span class="val">Brand refresh — Q4</span></div>
+            <div class="item"><span class="lbl">Forwarded inside org</span><span class="val">Founder + 4 senior hires</span></div>
+          </div>
+        </div>
+
+        <div class="roster-card">
+          <div class="seat"><span class="num">Seat 06</span><span class="sector">Travel & hospitality</span></div>
+          <h3>The post-experience economy, and what to build for it</h3>
+          <p class="outcome">Three dispatches built a thesis on how travellers will spend the eighteen months after a trip ends — a window most operators treat as dead air. The subscriber is now developing two new product lines explicitly aimed at that window.</p>
+          <div class="signal">
+            <div class="item"><span class="lbl">Followed-on project</span><span class="val">In discussion</span></div>
+            <div class="item"><span class="lbl">Forwarded inside org</span><span class="val">7 people</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PULLQUOTE -->
+  <section class="pullquote">
+    <div class="container">
+      <blockquote>"We've spent more on a single foresight piece in the past than the entire year of Horizon. The difference is that <em>we actually read this one</em>, and the team moved on it. That's the part most research can't promise."</blockquote>
+      <div class="attribution">
+        <div>
+          <div class="name">Horizon subscriber, Seat 04</div>
+          <div class="role">Chief Commercial Officer · Agricultural B2B</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOOKING AHEAD -->
+  <section>
+    <div class="container">
+      <div class="eyebrow">Looking ahead</div>
+      <h2 class="section-title">We built Horizon to be the dispatch <em>that gets forwarded.</em></h2>
+      <div class="prose">
+        <p>Six months in, the model holds. Senior writers, not analysts. Pointed views, not landscape scans. A roster small enough that every dispatch can be specific to a subscriber's category — and a price small enough that the question of whether to renew is never a question.</p>
+
+        <p>The next six months are about discipline. Hold the roster at six. Launch Studio carefully. Open Sydney and Auckland with the same standards as Melbourne. Keep the dispatches the kind of thing a CEO forwards to a board chair.</p>
+
+        <p>To the six subscribers who took a seat without a track record to point at: thank you. To the design and strategy leads inside those organisations who turned a forwarded PDF into a conversation that changed direction: that's the part we're most proud of. And to the team at Katapult — Trav, the senior writers, the design crew — who turned what was a thought experiment in March into a recurring product line by November: that part was the hardest, and you made it look easy.</p>
+
+        <div class="pill-row">
+          <span class="pill">Two seats opening Q1 2027</span>
+          <span class="pill">Studio waitlist now open</span>
+          <span class="pill">Sydney + Auckland · 2027</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGN-OFF -->
+  <section class="signoff">
+    <div class="container">
+      <div class="prose">
+        <p style="margin-bottom:24px;"><span class="em-dash">—</span>Written from Melbourne, November 2026.</p>
+        <div class="name">Nathan Pollock</div>
+        <div class="role">Founder &amp; CEO · Katapult</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="container">
+    <div class="row">
+      <div>
+        <div class="lockup" style="margin-bottom:16px;">
+          <svg class="mark" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 11 L11 2 L20 11 L11 20 Z" fill="#171717"/>
+          </svg>
+          <span class="wordmark">Katapult</span>
+          <span class="cross">/</span>
+          <span class="horizon">Horizon</span>
+        </div>
+        <div class="small">Four dispatches a year. Six seats. No more.</div>
+      </div>
+      <div class="small" style="text-align:right;">
+        <div>katapult.com.au · hello@katapult.com.au</div>
+      </div>
+    </div>
+    <div class="legal">© 2026 Katapult · Horizon is a quarterly intelligence subscription from Katapult.</div>
+  </div>
+</footer>
+
+<script>
+  // Topbar shadow on scroll
+  const bar = document.getElementById('topbar');
+  const onScroll = () => {
+    if (window.scrollY > 12) bar.classList.add('scrolled');
+    else bar.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>
