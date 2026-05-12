@@ -1,0 +1,1258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Slingshot — a partner company to Katapult · Internal pitch</title>
+<meta name="description" content="A separate-brand, AI-first product design venture built as a partner company to Katapult. Captures the sub-$30K market, feeds qualified leads back to Katapult main, and pays distributions on an $85K equity stake." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #171717;
+    --page: #FFFFFF;
+    --surface: #F7F7F7;
+    --surface-warm: #F2EFE9;
+    --hairline: #E8E8E8;
+    --secondary: #2A2A2A;
+    --tertiary: #1A1A1A;
+    --dark: #2A2A2A;
+    --accent: #79a949;
+    --warm: #FF6B35;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'Fragment Mono', 'SF Mono', Menlo, monospace;
+    --pad-x: clamp(24px, 5vw, 88px);
+    --pad-y: clamp(48px, 7vw, 112px);
+    --topbar-h: 72px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  html, body { background: var(--page); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  ::selection { background: var(--accent); color: #fff; }
+
+  /* Topbar */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--topbar-h);
+    padding: 0 var(--pad-x);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 220ms ease;
+  }
+  .topbar.scrolled { border-bottom-color: var(--hairline); }
+  .lockup { display: flex; align-items: center; gap: 10px; line-height: 1; }
+  .lockup .mark { width: 22px; height: 22px; }
+  .lockup .wordmark {
+    font-family: var(--sans); font-weight: 900;
+    font-size: 17px; letter-spacing: -0.035em; color: var(--ink);
+  }
+  .lockup .cross { font-family: var(--sans); font-weight: 300; font-size: 16px; color: var(--tertiary); margin: 0 2px; }
+  .lockup .slingshot {
+    font-family: var(--sans); font-weight: 600;
+    font-size: 17px; letter-spacing: -0.025em; color: var(--ink);
+  }
+  .topbar .meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+  }
+
+  main { padding-top: var(--topbar-h); }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--pad-x); }
+  .narrow { max-width: 760px; }
+
+  section { padding: var(--pad-y) 0; }
+
+  /* Eyebrow / section head */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin-bottom: 28px;
+    max-width: 980px;
+  }
+  .section-title em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .deck {
+    font-size: clamp(17px, 1.5vw, 21px);
+    color: var(--dark);
+    line-height: 1.55;
+    max-width: 720px;
+    margin-bottom: 24px;
+  }
+  .prose {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--dark);
+    max-width: 720px;
+  }
+  .prose p { margin-bottom: 1.3em; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--ink); font-weight: 600; }
+
+  /* PRINCIPLES LIST */
+  ol.principles-deck {
+    list-style: none;
+    counter-reset: principle;
+    padding-left: 0;
+    margin: clamp(32px, 4vw, 48px) 0 0;
+    max-width: 900px;
+  }
+  ol.principles-deck li {
+    counter-increment: principle;
+    position: relative;
+    padding: 20px 0 20px 64px;
+    border-top: 1px solid var(--hairline);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  ol.principles-deck li:last-child {
+    border-bottom: 1px solid var(--hairline);
+  }
+  ol.principles-deck li::before {
+    content: counter(principle, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 22px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  ol.principles-deck li strong { color: var(--ink); font-weight: 600; }
+
+  /* HERO */
+  .hero { padding: clamp(56px, 9vw, 128px) 0 clamp(48px, 6vw, 88px); }
+  .hero .breadcrumb {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 32px;
+  }
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 6px 12px;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+  }
+  .hero .date {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--tertiary);
+    text-transform: uppercase;
+  }
+  h1.headline {
+    font-size: clamp(44px, 7vw, 92px);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+    margin-bottom: 32px;
+    max-width: 1080px;
+  }
+  h1.headline em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .hero-deck {
+    font-size: clamp(18px, 1.6vw, 24px);
+    color: var(--dark);
+    max-width: 780px;
+    font-weight: 400;
+    line-height: 1.45;
+  }
+
+  /* Quote block */
+  .quote-block {
+    margin-top: clamp(48px, 6vw, 80px);
+    padding: clamp(32px, 4vw, 56px);
+    background: var(--surface-warm);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent);
+  }
+  .quote-block blockquote {
+    font-size: clamp(20px, 2vw, 26px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+  .quote-block .attribution {
+    margin-top: 20px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+  }
+
+  /* Two-column blocks */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 80px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  @media (max-width: 880px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+  .col h3 {
+    font-size: clamp(22px, 2.2vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .col p { font-size: 16px; color: var(--dark); line-height: 1.65; }
+
+  /* Three-up cards */
+  .three-up {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 2.5vw, 32px);
+    margin-top: clamp(40px, 5vw, 56px);
+  }
+  @media (max-width: 880px) { .three-up { grid-template-columns: 1fr; } }
+
+  .pkg {
+    background: var(--page);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: clamp(28px, 3.5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    transition: border-color 220ms ease, transform 220ms ease;
+  }
+  .pkg:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .pkg.featured { border-color: var(--accent); border-width: 2px; }
+  .pkg .tier {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+    margin-bottom: 16px;
+  }
+  .pkg .price {
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .pkg .price .currency { font-size: 0.45em; font-weight: 500; color: var(--tertiary); margin-right: 4px; vertical-align: top; }
+  .pkg .price-note {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+    margin-bottom: 24px;
+  }
+  .pkg h3 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .pkg p {
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  .pkg .turnaround {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+    padding-top: 16px;
+    border-top: 1px solid var(--hairline);
+  }
+
+  /* Add-ons */
+  .addons {
+    margin-top: 32px;
+    padding: 28px;
+    background: var(--surface);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  @media (max-width: 720px) { .addons { grid-template-columns: 1fr; } }
+  .addons .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+    white-space: nowrap;
+  }
+  .addons .pills {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .addons .pill {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    background: var(--page);
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--hairline);
+  }
+  .addons .pill .p { color: var(--accent); font-weight: 600; margin-left: 6px; }
+
+  /* Cap table */
+  .cap-table {
+    margin-top: clamp(40px, 5vw, 56px);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .cap-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 3fr;
+    gap: clamp(16px, 2vw, 32px);
+    padding: clamp(20px, 2.5vw, 28px) clamp(20px, 3vw, 32px);
+    border-bottom: 1px solid var(--hairline);
+    align-items: center;
+  }
+  .cap-row:last-child { border-bottom: none; }
+  .cap-row.header {
+    background: var(--surface);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+  }
+  .cap-row .holder {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 16px;
+  }
+  .cap-row .pct {
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .cap-row .notes {
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.5;
+  }
+  @media (max-width: 720px) {
+    .cap-row { grid-template-columns: 1fr; gap: 8px; }
+    .cap-row.header { display: none; }
+  }
+
+  /* Financial table */
+  .fin-strip {
+    margin-top: clamp(40px, 5vw, 56px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  @media (max-width: 880px) { .fin-strip { grid-template-columns: 1fr; } }
+  .fin-col {
+    padding: clamp(28px, 3vw, 40px);
+    border-right: 1px solid var(--hairline);
+  }
+  .fin-col:last-child { border-right: none; }
+  @media (max-width: 880px) {
+    .fin-col { border-right: none; border-bottom: 1px solid var(--hairline); }
+    .fin-col:last-child { border-bottom: none; }
+  }
+  .fin-col .year {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .fin-col .figure {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .fin-col .figure .unit {
+    font-size: 0.5em;
+    font-weight: 500;
+    color: var(--tertiary);
+    margin-left: 4px;
+  }
+  .fin-col .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+    margin-bottom: 24px;
+  }
+  .fin-col ul { list-style: none; }
+  .fin-col li {
+    display: flex; justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--hairline);
+    font-size: 14px;
+  }
+  .fin-col li:last-child { border-bottom: none; }
+  .fin-col li .k { color: var(--dark); }
+  .fin-col li .v { color: var(--ink); font-weight: 600; font-family: var(--mono); }
+
+  /* Capital allocation */
+  .cap-alloc {
+    margin-top: clamp(40px, 5vw, 56px);
+    background: var(--ink);
+    color: #fff;
+    border-radius: 8px;
+    padding: clamp(32px, 4vw, 56px);
+  }
+  .cap-alloc h3 {
+    font-size: clamp(22px, 2.4vw, 30px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 8px;
+  }
+  .cap-alloc .total {
+    font-size: clamp(56px, 7vw, 84px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+  .cap-alloc .total .unit { font-size: 0.4em; color: rgba(255,255,255,0.5); font-weight: 500; margin-left: 8px; vertical-align: top; }
+  .alloc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 720px) { .alloc-grid { grid-template-columns: 1fr; } }
+  .alloc-item {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+  }
+  .alloc-item .amt {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .alloc-item .what {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.4;
+  }
+
+  /* ROI strip */
+  .roi {
+    margin-top: clamp(32px, 4vw, 48px);
+    background: var(--surface);
+    border-radius: 8px;
+    padding: clamp(28px, 3vw, 40px);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 880px) { .roi { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .roi { grid-template-columns: 1fr; } }
+  .roi-cell {
+    text-align: left;
+  }
+  .roi-cell .yr {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+    margin-bottom: 4px;
+  }
+  .roi-cell .amt {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .roi-cell .amt.pos { color: var(--accent); }
+  .roi-cell .amt.neg { color: var(--ink); opacity: 0.6; }
+  .roi-cell .what {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+    margin-top: 4px;
+  }
+
+  /* Phases / steps */
+  .phases {
+    margin-top: clamp(40px, 5vw, 64px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2vw, 24px);
+  }
+  .phase {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: clamp(24px, 3vw, 40px);
+    padding: clamp(24px, 3vw, 32px);
+    background: var(--page);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    transition: border-color 220ms ease;
+  }
+  .phase:hover { border-color: var(--ink); }
+  @media (max-width: 720px) {
+    .phase { grid-template-columns: 1fr; gap: 12px; }
+  }
+  .phase .num {
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .phase .num .weeks {
+    display: block;
+    font-size: 10px;
+    color: var(--tertiary);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .phase h3 {
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .phase ul {
+    list-style: none;
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.7;
+  }
+  .phase li::before {
+    content: "→";
+    color: var(--accent);
+    margin-right: 12px;
+    font-weight: 500;
+  }
+
+  /* Risk table */
+  .risks {
+    margin-top: clamp(40px, 5vw, 56px);
+    border-top: 1px solid var(--ink);
+  }
+  .risk-row {
+    display: grid;
+    grid-template-columns: 3fr 1fr 4fr;
+    gap: clamp(16px, 2vw, 32px);
+    padding: clamp(20px, 2.5vw, 28px) 0;
+    border-bottom: 1px solid var(--hairline);
+    align-items: baseline;
+  }
+  @media (max-width: 720px) {
+    .risk-row { grid-template-columns: 1fr; gap: 8px; }
+  }
+  .risk-row .risk {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 16px;
+  }
+  .risk-row .level {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+  }
+  .risk-row .level.med { color: var(--warm); }
+  .risk-row .level.high { color: #d63031; }
+  .risk-row .mitigation {
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.5;
+  }
+
+  /* The Ask */
+  .ask {
+    background: var(--ink);
+    color: #fff;
+    padding: clamp(72px, 9vw, 144px) 0;
+  }
+  .ask .eyebrow { color: var(--accent); }
+  .ask h2 {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 32px;
+    max-width: 1080px;
+  }
+  .ask h2 em { color: var(--accent); font-style: italic; font-weight: 500; }
+  .ask .ask-list {
+    list-style: none;
+    margin-top: clamp(40px, 5vw, 56px);
+  }
+  .ask .ask-list li {
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    font-size: clamp(17px, 1.6vw, 20px);
+    line-height: 1.5;
+    color: rgba(255,255,255,0.92);
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 20px;
+    align-items: baseline;
+  }
+  .ask .ask-list .ord {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+  }
+  .ask .ask-list strong {
+    color: #fff;
+    font-weight: 600;
+  }
+  .ask .not-ask {
+    margin-top: clamp(40px, 5vw, 56px);
+    padding: clamp(24px, 3vw, 32px);
+    background: rgba(255,255,255,0.05);
+    border-left: 3px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+  }
+  .ask .not-ask .head {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 12px;
+  }
+  .ask .not-ask ul {
+    list-style: none;
+    color: rgba(255,255,255,0.85);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .ask .not-ask li::before { content: "—"; color: rgba(255,255,255,0.4); margin-right: 12px; }
+  .ask .timeline {
+    margin-top: clamp(40px, 5vw, 56px);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .ask .timeline strong { color: var(--accent); }
+
+  /* Footer */
+  footer {
+    background: var(--surface);
+    padding: clamp(48px, 6vw, 80px) 0 32px;
+    border-top: 1px solid var(--hairline);
+  }
+  footer .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  footer .small {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tertiary);
+  }
+  footer .legal {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--hairline);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--secondary);
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a class="lockup" href="/">
+    <svg class="mark" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 11 L11 2 L20 11 L11 20 Z" fill="#171717"/>
+    </svg>
+    <span class="wordmark">Katapult</span>
+    <span class="cross">×</span>
+    <span class="slingshot">Slingshot</span>
+  </a>
+  <div class="meta">Internal pitch · v1 · May 2026</div>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <span class="tag">Internal pitch</span>
+        <span class="date">For Greta, Mick &amp; the senior team</span>
+      </div>
+      <h1 class="headline">Disrupt ourselves. <em>Before someone else does.</em></h1>
+      <p class="hero-deck">A partner company to Katapult — same DNA, different lane. AI-first, transparent pricing, productised packages for the founders we can't profitably serve today. Capital-light, brand-protected, and built to feed qualified leads back to us.</p>
+
+      <div class="quote-block">
+        <blockquote>"If you're not doing it, then others will be doing it. Does the bottom end of the market kind of fall out anyway because people will be subscribing for $199, getting their idea taken through to that early concept level?"</blockquote>
+        <div class="attribution">Doug Buckle · in the room with Nathan · 12 May 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE'RE SEEING -->
+  <section>
+    <div class="container">
+      <div class="eyebrow">What's happening in the market</div>
+      <h2 class="section-title">The bottom of our market is <em>about to be claimed</em>.</h2>
+      <div class="two-col">
+        <div class="col">
+          <h3>The shift</h3>
+          <p>AI has just compressed concept design work from 60 hours to 25 hours (we saw it ourselves on the WA ground-effect project). The economics of the $5K–$30K project segment have changed. A productised AI-first competitor in this space is inevitable in the next 12–18 months.</p>
+        </div>
+        <div class="col">
+          <h3>The gap</h3>
+          <p>Designjoy is doing $1.3M ARR with one operator in graphic/web. AI-first UX agencies like Clay and LCA own the premium digital end. <strong>Nobody owns AI-first, productised, sub-$30K physical product design.</strong> The gap is real and uncontested.</p>
+        </div>
+        <div class="col">
+          <h3>What we leave on the table</h3>
+          <p>Every month we turn away or scare off founders whose budgets sit at $5K–$30K. They build with someone worse, or they don't build at all. A meaningful slice of those conversations could land in a productised offer that meets them where they are.</p>
+        </div>
+        <div class="col">
+          <h3>Why now</h3>
+          <p>The AI workflow exists and works. The market hasn't named a player here yet. Nathan raised the "Katapult Ventures" framing himself two weeks ago. Window is open, motivation is fresh, conviction is high. The action moment is now.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLINGSHOT -->
+  <section style="background: var(--surface-warm);">
+    <div class="container">
+      <div class="eyebrow">Introducing</div>
+      <h2 class="section-title">Slingshot — <em>a partner company to Katapult</em>.</h2>
+      <div class="prose">
+        <p>Slingshot is a separate-brand, AI-first product design venture. Same studio family, different lane. Same calibre of judgement, smaller scope of engagement. The line we want people to hear is simple:</p>
+        <p><em style="font-style: italic; color: var(--accent); font-weight: 500;">"Can't afford Katapult? Talk to our partner company Slingshot."</em></p>
+        <p>It captures the market segment Katapult cannot profitably serve today, runs lean with one operator and the AI harness as their leverage, uses Katapult's senior team as a stage-gate critique on every job, and hands clients up to Katapult main when their projects outgrow Slingshot's $28K ceiling — with a referral fee that keeps the incentives clean.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT -->
+  <section>
+    <div class="container">
+      <div class="eyebrow">The product</div>
+      <h2 class="section-title">Three packages. <em>Transparent pricing.</em> On the website.</h2>
+      <p class="deck">Productised scope, productised price, productised delivery. No proposal cycles. No mystery quotes. Founders see the prices before they fill in the intake form.</p>
+
+      <div class="three-up">
+        <div class="pkg">
+          <div class="tier">Tier 01</div>
+          <div class="price"><span class="currency">$</span>5,000</div>
+          <div class="price-note">+ GST · 2 weeks</div>
+          <h3>Discovery Sprint</h3>
+          <p>AI-augmented discovery report + market opportunity forecast + first concept directions. The "are we onto something?" piece.</p>
+          <div class="turnaround">2 weeks · 1 stage-gate</div>
+        </div>
+
+        <div class="pkg featured">
+          <div class="tier">Tier 02 · Most likely entry point</div>
+          <div class="price"><span class="currency">$</span>14,000</div>
+          <div class="price-note">+ GST · 4 weeks</div>
+          <h3>Concept Exploration</h3>
+          <p>Discovery + concept sprint with senior stage-gate critique + 3 developed directions + complete sketch package. The "what are we actually building?" piece.</p>
+          <div class="turnaround">4 weeks · 3 stage-gates</div>
+        </div>
+
+        <div class="pkg">
+          <div class="tier">Tier 03 · Upgrade ceiling</div>
+          <div class="price"><span class="currency">$</span>28,000</div>
+          <div class="price-note">+ GST · 6–8 weeks</div>
+          <h3>Design-Ready Brief</h3>
+          <p>Above + manufacturability assessment + supplier shortlist + complete handoff package for production. The "ready to make it" piece. Beyond this, upgrade to Katapult main.</p>
+          <div class="turnaround">6–8 weeks · 4 stage-gates</div>
+        </div>
+      </div>
+
+      <div class="addons">
+        <div class="label">Modular add-ons</div>
+        <div class="pills">
+          <span class="pill">Brand identity <span class="p">$2K</span></span>
+          <span class="pill">Patent / prior-art search <span class="p">$2K</span></span>
+          <span class="pill">Naming with clearance <span class="p">$2K</span></span>
+          <span class="pill">Trademark filing <span class="p">$2K</span></span>
+          <span class="pill">Design registration <span class="p">$2K</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS IN PLAIN LANGUAGE -->
+  <section>
+    <div class="container">
+      <div class="eyebrow">How it works, in plain language</div>
+      <h2 class="section-title">Small company, <em>big backing.</em><br>Built so everyone wins together.</h2>
+      <p class="deck">The detailed structure follows. But the seven principles below hold the whole thing — if a stakeholder can hold these in their head, they understand Slingshot.</p>
+
+      <ol class="principles-deck">
+        <li><strong>Nathan keeps control.</strong> Katapult is the largest shareholder and holds a brand-protective veto on anything that touches the parent name.</li>
+        <li><strong>A key person gets the chance to grow a company</strong> — internal first if the right candidate is already inside Katapult, external if not.</li>
+        <li><strong>They take meaningful equity</strong> in the success of the new venture.</li>
+        <li><strong>They draw a fallback salary at roughly 30–40%</strong> of what they'd otherwise be on. Enough to live; low enough to be entrepreneurial.</li>
+        <li><strong>The business pays the rest of their salary</strong> as revenue comes in — distributions scale with profitability.</li>
+        <li><strong>Together everyone grows it</strong> — and their stake in it — over time.</li>
+        <li><strong>10% is reserved for advisors</strong> who help along the way (Doug, and potentially others as needed).</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- STRUCTURE -->
+  <section style="background: var(--surface);">
+    <div class="container">
+      <div class="eyebrow">The structure</div>
+      <h2 class="section-title">Capital-light. <em>Brand-protected.</em> Built to compound.</h2>
+      <p class="deck">Slingshot Pty Ltd — a new entity, separate from Katapult, with Katapult Pty Ltd as the largest shareholder and a brand-protective veto. The implementation of the seven principles above.</p>
+
+      <div class="cap-table">
+        <div class="cap-row header">
+          <div>Holder</div>
+          <div>Equity</div>
+          <div>Notes</div>
+        </div>
+        <div class="cap-row">
+          <div class="holder">Founder-operator</div>
+          <div class="pct">40%</div>
+          <div class="notes">Founders' shares · 4-year vest with 1-year cliff · $45K retainer Y1 (30% of $150K base) · salary uplifts to $60K Y2 and $80K Y3 as the business sustains it</div>
+        </div>
+        <div class="cap-row">
+          <div class="holder">Katapult Pty Ltd</div>
+          <div class="pct">45%</div>
+          <div class="notes">$85K capital contribution · golden-share veto on brand use, hiring of Katapult staff, conflicting client work, and sale of the entity · operational control sits elsewhere</div>
+        </div>
+        <div class="cap-row">
+          <div class="holder">Doug Buckle</div>
+          <div class="pct">10%</div>
+          <div class="notes">Advisor · 24-month vest · equity-only, no cash retainer · AI workflow design, productisation strategy, founder coaching, ~1 day/month</div>
+        </div>
+        <div class="cap-row">
+          <div class="holder">Employee option pool</div>
+          <div class="pct">5%</div>
+          <div class="notes">Reserved for future key hires</div>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-top: clamp(48px, 6vw, 80px);">
+        <div class="col">
+          <h3>The candidate — internal first</h3>
+          <p>The right person is almost certainly already inside Katapult. Senior, hungry for a step-up, AI-curious. They take the operator role with the <strong>verbal commitment from Nathan that if it's not working at 18 months, they return to their existing position with no loss of seniority.</strong> That fallback is the single most important hiring lever — it lets us offer a step-up role to someone good without asking them to bet their career.</p>
+        </div>
+        <div class="col">
+          <h3>The backstop</h3>
+          <p>Katapult senior provides 2–4 hours per Slingshot engagement on stage-gate critique. Charged to Slingshot at internal rate, capped at $1,500 per engagement. That's the moat — AI does the speed, our senior team does the judgement that prevents the AI's competent-but-generic output from becoming Slingshot's brand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINANCIALS -->
+  <section>
+    <div class="container">
+      <div class="eyebrow">The numbers</div>
+      <h2 class="section-title">Conservative three-year projection.</h2>
+      <p class="deck">Modelled on real benchmarks: Australian boutique brand pricing, productised-agency growth curves, and the actual cost structure of a one-operator AI-leveraged business. Numbers below are what we believe; not what's possible if it really works.</p>
+
+      <div class="fin-strip">
+        <div class="fin-col">
+          <div class="year">Year 1</div>
+          <div class="figure"><span class="unit">$</span>148<span class="unit">K</span></div>
+          <div class="label">Revenue</div>
+          <ul>
+            <li><span class="k">Operator retainer</span><span class="v">$45K</span></li>
+            <li><span class="k">Total costs</span><span class="v">$93K</span></li>
+            <li><span class="k">Net (after tax)</span><span class="v">$41K</span></li>
+            <li><span class="k">Distributions</span><span class="v">$0 · reinvest</span></li>
+          </ul>
+        </div>
+        <div class="fin-col">
+          <div class="year">Year 2</div>
+          <div class="figure"><span class="unit">$</span>300<span class="unit">K</span></div>
+          <div class="label">Revenue</div>
+          <ul>
+            <li><span class="k">Operator salary</span><span class="v">$60K</span></li>
+            <li><span class="k">Total costs</span><span class="v">$125K</span></li>
+            <li><span class="k">Net (after tax)</span><span class="v">$131K</span></li>
+            <li><span class="k">Katapult dist.</span><span class="v">$36K</span></li>
+          </ul>
+        </div>
+        <div class="fin-col">
+          <div class="year">Year 3</div>
+          <div class="figure"><span class="unit">$</span>500<span class="unit">K</span></div>
+          <div class="label">Revenue</div>
+          <ul>
+            <li><span class="k">Operator + junior</span><span class="v">$160K</span></li>
+            <li><span class="k">Total costs</span><span class="v">$250K</span></li>
+            <li><span class="k">Net (after tax)</span><span class="v">$187K</span></li>
+            <li><span class="k">Katapult dist.</span><span class="v">$63K</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cap-alloc">
+        <h3>Katapult's capital contribution</h3>
+        <div class="total">$85,000<span class="unit">AUD</span></div>
+        <div class="alloc-grid">
+          <div class="alloc-item">
+            <div class="amt">$45,000</div>
+            <div class="what">Founder-operator retainer · 12 months at 30% of $150K base</div>
+          </div>
+          <div class="alloc-item">
+            <div class="amt">$10,000</div>
+            <div class="what">Brand identity + website build</div>
+          </div>
+          <div class="alloc-item">
+            <div class="amt">$10,000</div>
+            <div class="what">Marketing + content production for 12 months</div>
+          </div>
+          <div class="alloc-item">
+            <div class="amt">$5,000</div>
+            <div class="what">Legal — entity setup, shareholders' agreement, brand licence</div>
+          </div>
+          <div class="alloc-item">
+            <div class="amt">$5,000</div>
+            <div class="what">AI tools subscriptions for 12 months</div>
+          </div>
+          <div class="alloc-item">
+            <div class="amt">$5,000</div>
+            <div class="what">Accounting + insurance + admin for 12 months</div>
+          </div>
+          <div class="alloc-item">
+            <div class="amt">$5,000</div>
+            <div class="what">Buffer / contingency</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top: clamp(56px, 7vw, 88px);">Katapult's return on $85K invested · cumulative position</div>
+      <div class="roi">
+        <div class="roi-cell">
+          <div class="yr">Year 1</div>
+          <div class="amt neg">−$85K</div>
+          <div class="what">Capital deployed</div>
+        </div>
+        <div class="roi-cell">
+          <div class="yr">Year 2</div>
+          <div class="amt neg">−$49K</div>
+          <div class="what">$36K first dist.</div>
+        </div>
+        <div class="roi-cell">
+          <div class="yr">Year 3</div>
+          <div class="amt pos">+$14K</div>
+          <div class="what">Breakeven crossed</div>
+        </div>
+        <div class="roi-cell">
+          <div class="yr">Year 4</div>
+          <div class="amt pos">+$89K</div>
+          <div class="what">Compounding</div>
+        </div>
+        <div class="roi-cell">
+          <div class="yr">Year 5</div>
+          <div class="amt pos">+$179K</div>
+          <div class="what">Ongoing income line</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATH -->
+  <section style="background: var(--surface);">
+    <div class="container">
+      <div class="eyebrow">The path</div>
+      <h2 class="section-title">From decision to first revenue in <em>~five months</em>.</h2>
+
+      <div class="phases">
+        <div class="phase">
+          <div class="num">01<span class="weeks">Weeks 1–4</span></div>
+          <div>
+            <h3>Concept lock and candidate selection</h3>
+            <ul>
+              <li>Nathan + Doug agree on the structure (this document, signed off)</li>
+              <li>Nathan canvasses internal Katapult senior team for the operator candidate</li>
+              <li>2–3 candidate conversations</li>
+              <li>Selection — or decision to extend to external search</li>
+              <li>Heads-of-agreement signed by selected candidate</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="num">02<span class="weeks">Weeks 5–10</span></div>
+          <div>
+            <h3>Entity and operator setup</h3>
+            <ul>
+              <li>Incorporate Slingshot Pty Ltd</li>
+              <li>Shareholders' agreement, brand licence, services agreement signed</li>
+              <li>$85K capital injection by Katapult Pty Ltd</li>
+              <li>Founder-operator transitions out of their Katapult role (one bridge month at full salary)</li>
+              <li>Bank, accounting, GST registration</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="num">03<span class="weeks">Weeks 8–14</span></div>
+          <div>
+            <h3>Brand and infrastructure</h3>
+            <ul>
+              <li>Brand identity confirmed — name, logo, voice, colour</li>
+              <li>Website live with three-tier transparent pricing and intake</li>
+              <li>AI workflow harness deployed (shared with Katapult main)</li>
+              <li>Content production stack ready — LinkedIn, TikTok, newsletter templates</li>
+              <li>2 internal sample projects run to populate portfolio</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="num">04<span class="weeks">Weeks 14–24</span></div>
+          <div>
+            <h3>Soft launch and first revenue</h3>
+            <ul>
+              <li>Soft launch to Nathan's, Doug's, and operator's networks</li>
+              <li>First 3–5 prospects engaged</li>
+              <li>First Discovery Sprint sold, delivered, invoiced</li>
+              <li>Iteration on pricing, scope, messaging based on real feedback</li>
+              <li>Content engine producing 3–5 pieces per week</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="num">05<span class="weeks">Months 6–12</span></div>
+          <div>
+            <h3>Steady operating rhythm</h3>
+            <ul>
+              <li>Monthly Slingshot board (Nathan, operator, Doug)</li>
+              <li>Weekly pipeline review by operator</li>
+              <li>First Katapult-main referral-up around month 9–10</li>
+              <li>Year-1 review by month 12 against the $148K target</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="num">06<span class="weeks">Months 13–18</span></div>
+          <div>
+            <h3>Decision year</h3>
+            <ul>
+              <li>Is the model sustainable? Profitable? Distributing?</li>
+              <li>Scale-up decisions — junior support hire, second tier expansion</li>
+              <li>18-month operator review — continue, evolve, or take the fallback</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISKS -->
+  <section>
+    <div class="container">
+      <div class="eyebrow">What could go wrong</div>
+      <h2 class="section-title">The risks we're naming up front.</h2>
+      <p class="deck">No hiding the obvious. Each risk with the realistic likelihood and the specific mitigation we've built into the model.</p>
+
+      <div class="risks">
+        <div class="risk-row">
+          <div class="risk">Can't find the right internal candidate</div>
+          <div class="level med">Medium</div>
+          <div class="mitigation">Decide on external search at end of month 1. Don't drag it out. Have a clear "stop and reassess" trigger.</div>
+        </div>
+        <div class="risk-row">
+          <div class="risk">Brand bleed — Slingshot work reflects on Katapult</div>
+          <div class="level">Low–Med</div>
+          <div class="mitigation">Senior stage-gate on every job. Separate visual brand. Katapult's golden-share veto on brand use.</div>
+        </div>
+        <div class="risk-row">
+          <div class="risk">Channel conflict with Katapult main clients</div>
+          <div class="level med">Medium</div>
+          <div class="mitigation">Hard rules in operating agreement (any Katapult client of last 36 months is off-limits). Referral-fee aligns incentives.</div>
+        </div>
+        <div class="risk-row">
+          <div class="risk">Content / funnel ramp slow (no TikTok traction)</div>
+          <div class="level high">High</div>
+          <div class="mitigation">Don't depend on TikTok alone. LinkedIn + direct outreach + Nathan/Doug network for first 12 months. Assume slow content compounding.</div>
+        </div>
+        <div class="risk-row">
+          <div class="risk">AI tooling commoditises faster than expected</div>
+          <div class="level med">Medium</div>
+          <div class="mitigation">The moat is the workflow design + senior critique, not the AI itself. Tools are replaceable; judgement isn't.</div>
+        </div>
+        <div class="risk-row">
+          <div class="risk">Operator burnout in year 1</div>
+          <div class="level med">Medium</div>
+          <div class="mitigation">Realistic salary expectations set upfront. Monthly board check-ins on workload. The 18-month fallback is the safety valve.</div>
+        </div>
+        <div class="risk-row">
+          <div class="risk">Revenue ramp slower than projected</div>
+          <div class="level med">Medium</div>
+          <div class="mitigation">$85K capital + revenue ramping from Q2 gives 12 months runway even on conservative projections.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASK -->
+  <section class="ask">
+    <div class="container">
+      <div class="eyebrow">The decision in front of us</div>
+      <h2>What we're asking the Katapult team <em>to commit to</em>.</h2>
+      <ol class="ask-list">
+        <li>
+          <span class="ord">01</span>
+          <span><strong>In-principle agreement</strong> to launch Slingshot as a partner company to Katapult, with the structure described in this document.</span>
+        </li>
+        <li>
+          <span class="ord">02</span>
+          <span><strong>Identification of a candidate</strong> — ideally an internal Katapult senior who'd take the operator role, with the verbal 18-month fallback to their current position.</span>
+        </li>
+        <li>
+          <span class="ord">03</span>
+          <span><strong>Capital commitment of $85,000</strong> from Katapult Pty Ltd to Slingshot Pty Ltd as equity buy-in for the 45% stake.</span>
+        </li>
+        <li>
+          <span class="ord">04</span>
+          <span><strong>Brand licence agreement</strong> allowing Slingshot to reference Katapult as its partner company in marketing.</span>
+        </li>
+        <li>
+          <span class="ord">05</span>
+          <span><strong>Operational commitment</strong> for senior Katapult time on stage-gate critiques (2–4 hours per engagement, paid back at internal rate).</span>
+        </li>
+      </ol>
+
+      <div class="not-ask">
+        <div class="head">What we're NOT asking for</div>
+        <ul>
+          <li>Significant ongoing time from Nathan personally — target 1–2 days/month for first six months, then half a day/month</li>
+          <li>Free senior staff time — every hour is paid back at internal rate</li>
+          <li>Any client disruption to Katapult main — explicit off-limits rules</li>
+          <li>Any change to Katapult's existing brand, positioning, or service model</li>
+        </ul>
+      </div>
+
+      <div class="timeline">Decision timeline requested: <strong>4 weeks from this document</strong>. Slow enough for the team to consult properly. Fast enough to maintain momentum.</div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section>
+    <div class="container">
+      <div class="prose">
+        <p style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tertiary); margin-bottom: 24px;">— Closing</p>
+        <p>The case for Slingshot is not that it changes what Katapult is. The case is that it lets Katapult keep being exactly what Katapult is — senior, considered, premium, judgement-led — while a separate, leaner, faster-moving entity captures the part of the market we currently can't profitably serve.</p>
+        <p>If the experiment works, Katapult gains a new income line, a new lead-gen channel, and a defensive position against the AI-first competitor that's coming anyway. If it doesn't, $85K is the cost of finding out, and the brand walks away unmarked.</p>
+        <p>The window for this is open now because we have the AI workflow, we have the conviction, and we have — almost certainly — the right person already inside the building. The question is whether we move while those three things are aligned.</p>
+        <p style="margin-top: 40px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tertiary);">Doug Buckle · Nathan Pollock · May 2026</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div>
+        <div class="lockup" style="margin-bottom:16px;">
+          <svg class="mark" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 11 L11 2 L20 11 L11 20 Z" fill="#171717"/>
+          </svg>
+          <span class="wordmark">Katapult</span>
+          <span class="cross">×</span>
+          <span class="slingshot">Slingshot</span>
+        </div>
+        <div class="small">A partner company. Same DNA, different lane.</div>
+      </div>
+      <div class="small" style="text-align:right;">
+        <div>Internal pitch · v1 · May 2026</div>
+      </div>
+    </div>
+    <div class="legal">© 2026 · Confidential — for Katapult internal stakeholders only · Not for distribution.</div>
+  </div>
+</footer>
+
+<script>
+  const bar = document.getElementById('topbar');
+  const onScroll = () => {
+    if (window.scrollY > 12) bar.classList.add('scrolled');
+    else bar.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>

@@ -4,8 +4,11 @@ Private index for pieces Doug is sharing with Nathan Pollock (Katapult).
 
 ## Pages
 
-- `/` — placeholder index, lists available pages
+- `/` — directory page listing the four pieces below
 - `/horizon-press-release/` — six-months-from-now retrospective on the Horizon quarterly intelligence program (Nov 2026 dated)
+- `/slingshot/` — internal pitch deck for the Slingshot partner company (single-scroll, presentable, with cap table + financials + path + risks + ask)
+- `/explorations/` — Five Explorations magazine. Multi-page glossy reading on all five ideas (Slingshot, Hardware moat, parked validation tool, productised toolkit, the Workshop)
+- `/workshop/` — internal pitch deck for The Workshop (single-scroll, presentable, with how-it-runs + capabilities + senior layer + economics + path + risks + ask)
 
 ## Deploy (first time)
 
